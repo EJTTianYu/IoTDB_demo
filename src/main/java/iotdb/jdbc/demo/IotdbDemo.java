@@ -13,11 +13,22 @@ import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Properties;
+import org.junit.Test;
 
 public class IotdbDemo {
 
+  public Connection getIotdbConn() {
+    return iotdbConn;
+  }
+
   private Connection iotdbConn;
   private static String urlTem = "jdbc:iotdb://%s:%s/";
+
+  public String getQuerySQL() {
+    return querySQL;
+  }
+
+  private String querySQL;
 
   public void getConnection(String configPath)
       throws IOException, ClassNotFoundException, SQLException {
@@ -29,6 +40,7 @@ public class IotdbDemo {
         .format(urlTem, properties.getProperty("IP"), properties.getProperty("PORT"));
     iotdbConn = DriverManager
         .getConnection(url, (String) properties.get("USER"), (String) properties.get("PASS"));
+    querySQL = properties.getProperty("QUERY_SQL");
     System.out.println(String.format("连接成功,JDBC的地址为%s", url));
   }
 
@@ -48,7 +60,7 @@ public class IotdbDemo {
   /**
    * 如果传入的ResultSet不为空,输出ResultSet
    */
-  private static void outputRs(ResultSet resultSet, PrintStream out) throws SQLException {
+  public static void outputRs(ResultSet resultSet, PrintStream out) throws SQLException {
     if (resultSet != null) {
       out.println("--------------------------");
       final ResultSetMetaData metaData = resultSet.getMetaData();
