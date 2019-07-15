@@ -13,6 +13,7 @@ import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Properties;
+import org.junit.Test;
 
 public class IotdbDemo {
 
@@ -48,7 +49,7 @@ public class IotdbDemo {
   /**
    * 如果传入的ResultSet不为空,输出ResultSet
    */
-  private static void outputRs(ResultSet resultSet, PrintStream out) throws SQLException {
+  public static void outputRs(ResultSet resultSet, PrintStream out) throws SQLException {
     if (resultSet != null) {
       out.println("--------------------------");
       final ResultSetMetaData metaData = resultSet.getMetaData();
