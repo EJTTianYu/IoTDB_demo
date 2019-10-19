@@ -17,6 +17,10 @@ import org.junit.Test;
 
 public class IotdbDemo {
 
+  public Connection getIotdbConn() {
+    return iotdbConn;
+  }
+
   private Connection iotdbConn;
   private static String urlTem = "jdbc:iotdb://%s:%s/";
 

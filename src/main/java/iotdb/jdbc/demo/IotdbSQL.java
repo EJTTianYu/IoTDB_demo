@@ -12,7 +12,7 @@ public class IotdbSQL {
   public static final String createTs = "CREATE TIMESERIES root.demo.s0 WITH DATATYPE=INT32,ENCODING=RLE;";
 
   //创建时间序列的语句，不同的数据类型有不同的编码方式，这里仅以INT32为例
-  public static final String createTsMul = "CREATE TIMESERIES root.demo0.s%s WITH DATATYPE=INT32,ENCODING=RLE;";
+  public static final String createTsMul = "CREATE TIMESERIES root.demo.s%s WITH DATATYPE=INT32,ENCODING=RLE;";
 
   //查看时间序列的语句
   public static final String showTs = "SHOW TIMESERIES root.demo";

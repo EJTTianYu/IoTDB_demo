@@ -38,6 +38,7 @@ public class createTs {
 
   public static void main(String[] args) throws Exception {
     long startTime = System.currentTimeMillis();
+    System.out.println(String.format("启动时间为:%s",new Date()));
     Thread[] threads = new Thread[times];
     IotdbDemo iotdbDemo = new IotdbDemo();
     try {
@@ -49,14 +50,14 @@ public class createTs {
     } catch (SQLException e) {
       e.printStackTrace();
     }
-//    try {
+    try {
 //      for (int i = 0; i < 50; i++) {
 //        IotdbDemo.outputRs(iotdbDemo.getResultSet(IotdbSQL.createSG + i), System.out);
 //      }
-//      IotdbDemo.outputRs(iotdbDemo.getResultSet(IotdbSQL.createSG), System.out);
-//    } catch (SQLException e) {
-//      e.printStackTrace();
-//    }
+      IotdbDemo.outputRs(iotdbDemo.getResultSet(IotdbSQL.createSG), System.out);
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
     for (int i = 0; i < threads.length; i++) {
       threads[i] = new Thread(task);
     }
