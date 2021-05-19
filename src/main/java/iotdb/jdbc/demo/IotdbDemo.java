@@ -2,7 +2,6 @@ package iotdb.jdbc.demo;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintStream;
@@ -13,7 +12,6 @@ import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Properties;
-import org.junit.Test;
 
 public class IotdbDemo {
 
@@ -22,6 +20,7 @@ public class IotdbDemo {
   }
 
   private Connection iotdbConn;
+  private int selectCnt;
   private static String urlTem = "jdbc:iotdb://%s:%s/";
 
   public String getQuerySQL() {
@@ -41,6 +40,7 @@ public class IotdbDemo {
     iotdbConn = DriverManager
         .getConnection(url, (String) properties.get("USER"), (String) properties.get("PASS"));
     querySQL = properties.getProperty("QUERY_SQL");
+    selectCnt = Integer.parseInt(properties.getProperty("SELECT_CNT"));
     System.out.println(String.format("连接成功,JDBC的地址为%s", url));
   }
 

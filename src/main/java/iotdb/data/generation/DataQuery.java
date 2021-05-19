@@ -20,7 +20,7 @@ public class DataQuery {
       }
       long endTime = System.currentTimeMillis();
       System.out.println(String.format("查询结束,总耗时为%s", endTime - startTime));
-//      System.out.println(rowCount);
+      System.out.println(rowCount);
     }
   }
 }

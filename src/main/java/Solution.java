@@ -1,63 +1,92 @@
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.PriorityQueue;
-import java.util.Random;
+import java.util.LinkedList;
+import java.util.Queue;
+
+class ListNode {
+
+  int val;
+  ListNode next;
+
+  ListNode(int val) {
+    this.val = val;
+  }
+}
+
+class Utils {
+
+  static ListNode transform(int[] nums) {
+    ListNode dummy = new ListNode(0);
+    ListNode current = dummy;
+    for (int num : nums) {
+      current.next = new ListNode(num);
+      current = current.next;
+    }
+    return dummy.next;
+  }
+
+  static void printListNode(ListNode head) {
+    while (head != null) {
+      System.out.print(head.val + ",");
+      head = head.next;
+    }
+  }
+}
+
+class TreeNode {
+
+  TreeNode left;
+  TreeNode right;
+  int val;
+
+  TreeNode(int val) {
+    this.val = val;
+  }
+
+}
 
 public class Solution {
 
-  public int maximalRectangle(char[][] matrix) {
-    if (matrix.length == 0) {
-      return 0;
-    }
-    int ans = 0;
-    int[][] dp = new int[matrix.length][matrix[0].length];
-    for (int i = 0; i < matrix.length; i++) {
-      for (int j = 0; j < matrix[0].length; j++) {
-        int left = j;
-        while (left >= 0 && matrix[i][left] == '1') {
-          left--;
-        }
-        dp[i][j] = j - left;
-      }
-    }
-    for (int i = 0; i < matrix.length; i++) {
-      for (int j = 0; j < matrix[0].length; j++) {
-        if (matrix[i][j] == '0') {
-          continue;
-        }
-        int currMax = 0;
-        int lowRow = i;
-        int minCol = dp[i][j];
-        while (lowRow >= 0 && dp[lowRow][j] != 0) {
-          minCol = Math.min(minCol, dp[lowRow][j]);
-          currMax = Math.max(currMax, minCol * (i - lowRow + 1));
-          lowRow--;
-        }
-        ans = Math.max(ans, currMax);
-      }
-    }
-
-    return ans;
-  }
-
-//  public static void main(String[] args) {
-//    char[][] nums = new char[][]{{'1', '0', '1', '0', '0'}, {'1', '0', '1', '1', '1'},
-//        {'1', '1', '1', '1', '1'}, {'1', '0', '0', '1', '0'}};
-////    System.out.println(new Solution().maximalRectangle(nums));
-//    List<String> testMap = new ArrayList<>();
-//    testMap.add("test");
-//    System.out.println(testMap.get(2));
+//  boolean isPinghengBinaryTree(TreeNode root) {
+//    if (root == null) {
+//      return true;
+//    }
+//    int leftDepth = depth(root.left);
+//    int rightDepth = depth(root.right);
+//    return Math.abs(leftDepth - rightDepth) <= 1 && isPinghengBinaryTree(root.left)
+//        && isPinghengBinaryTree(root.right);
+//  }
+//
+//  int depth(TreeNode root) {
+//    if (root == null) {
+//      return 0;
+//    }
+//    return 1 + Math.max(depth(root.left), depth(root.right));
 //  }
 
-  public static void main(String[] args) {
-    PriorityQueue<Integer> integerPriorityQueue = new PriorityQueue<>();
-    integerPriorityQueue.add(10);
-    integerPriorityQueue.add(1);
-    while(true){
-      System.out.println(integerPriorityQueue.poll());
+
+}
+
+class Stack {
+
+  Queue<Integer> queue1 = new LinkedList<>();
+  Queue<Integer> queue2 = new LinkedList<>();
+
+  void put(int k) {
+    if (queue1.isEmpty()) {
+      transfrom(queue2, queue1);
+    }
+    queue1.add(k);
+  }
+
+  int peek() {
+    if (queue2.isEmpty()) {
+      transfrom(queue1, queue2);
+    }
+    return queue2.peek();
+  }
+
+  void transfrom(Queue<Integer> q1, Queue<Integer> q2) {
+    while (!q1.isEmpty()) {
+      q2.add(q1.poll());
     }
   }
 }
