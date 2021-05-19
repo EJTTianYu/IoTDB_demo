@@ -20,6 +20,7 @@ public class IotdbDemo {
   }
 
   private Connection iotdbConn;
+
   private int selectCnt;
   private static String urlTem = "jdbc:iotdb://%s:%s/";
 
@@ -28,6 +29,10 @@ public class IotdbDemo {
   }
 
   private String querySQL;
+
+  public int getSelectCnt() {
+    return selectCnt;
+  }
 
   public void getConnection(String configPath)
       throws IOException, ClassNotFoundException, SQLException {

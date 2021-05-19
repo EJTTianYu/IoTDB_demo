@@ -7,9 +7,9 @@ public class DataQuery {
   public static void main(String[] args) throws Exception {
 
     iotdb.jdbc.demo.IotdbDemo iotdbDemo = new iotdb.jdbc.demo.IotdbDemo();
-    iotdbDemo.getConnection("/Users/tianyu/dwf3s/src/main/resources/con_info.properties");
+    iotdbDemo.getConnection("/home/fit/tianYu/IoTDB_demo/src/main/resources/con_info.properties");
 
-    for (int i = 0; i < 10000; i++) {
+    for (int i = 0; i < iotdbDemo.getSelectCnt(); i++) {
       long startTime = System.currentTimeMillis();
       System.out.println(iotdbDemo.getQuerySQL());
 
